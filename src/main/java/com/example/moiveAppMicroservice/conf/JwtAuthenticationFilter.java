@@ -1,6 +1,5 @@
 package com.example.moiveAppMicroservice.conf;
 
-import com.example.moiveAppMicroservice.exceptions.JwtTokenValidationException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
