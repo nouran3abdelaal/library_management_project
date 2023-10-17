@@ -3,6 +3,9 @@ package com.example.moiveAppMicroservice.conf;
 import com.example.moiveAppMicroservice.exceptions.JwtTokenValidationException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -25,18 +28,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain)
             throws ServletException, IOException {
         try {
-            final String authHeader = request.getHeader("Authorization");
+            final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
             final String jwt;
             final String userEmail;
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+                System.out.println("authHeader == null ");
                 filterChain.doFilter(request, response);
                 return;
             }
             jwt = authHeader.substring(7);
-            userEmail = jwtService.extractUsername(jwt);
-            if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+//            userEmail = jwtService.extractUsername(jwt);
+            if ( SecurityContextHolder.getContext().getAuthentication() == null) {
+                System.out.println("userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null ");
 
                 if (jwtService.isTokenValid(jwt)) {
+                    System.out.println("jwtService.isTokenValid(jwt)");
+
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                             null,
                             null,
@@ -47,12 +54,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     );
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 }
-//                System.out.println("here");
+                System.out.println("here");
             }
             filterChain.doFilter(request, response);
 
     } catch (Exception e) {
-        throw new JwtTokenValidationException("Invalid or expired token");
-    }
+
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        }
     }
 }
