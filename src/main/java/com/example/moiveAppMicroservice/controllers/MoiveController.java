@@ -46,9 +46,9 @@ public List<Moive> getAllMoivesPaginated(@PathVariable int Page_number) {
 //    public void updateMoive(@RequestBody Moive t,@PathVariable String id){
 //        moiveService.updateMoive(id,t);
 //    }
-//    @RequestMapping(method = RequestMethod.DELETE,value = "/Moive/{id}")
-//    public void deleteMoive(@PathVariable String id){
-//        moiveService.deleteMoive(id);
-//    }
+    @RequestMapping(method = RequestMethod.DELETE,value = "/MoivesRemove")
+    public void deleteMoive(){
+        moiveService.deleteMoive();
+    }
 
 }

@@ -42,8 +42,8 @@ public class MoiveService {
         moiveRepository.save(newMoive);
     }
 
-    public void deleteMoive(String id) {
-        moiveRepository.deleteById(id);
+    public void deleteMoive() {
+        moiveRepository.deleteAll();
     }
 
     public List<Moive> addMoives(List<Moive> moives) {
