@@ -5,11 +5,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -22,15 +19,8 @@ import java.util.function.Function;
 public class JwtService {
     @Value("${jwt.secretKey}")
     private String secretKey;
-    //    public  Authentication getAuthentication(String token) {
-//        if (isTokenValid(token)) {
-//            return new UsernamePasswordAuthenticationToken(null, null, getAuthorities());
-//        }
-//
-//        return null;
-//    }
-    public static List<GrantedAuthority> getAuthorities() {
-        // Define user roles or authorities.
+
+    public  List<GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         return authorities;
@@ -38,7 +28,7 @@ public class JwtService {
 
 
 
-    private Claims extractAllClaims(String token) {
+    public Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
                 .setSigningKey(getSignInKey())
@@ -51,21 +41,19 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject);
-    }
 
     public boolean isTokenValid(String token) {
         return ( !isTokenExpired(token));
     }
-    private boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
-    private Date extractExpiration(String token) {
+    public Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
-    private Key getSignInKey() {
+    public Key getSignInKey() {
+        secretKey= "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }

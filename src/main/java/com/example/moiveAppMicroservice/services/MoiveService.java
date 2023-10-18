@@ -19,7 +19,6 @@ public class MoiveService {
         List<Moive> Moives = new ArrayList<>();
         Page<Moive> page= (Page<Moive>) moiveRepository.findAll(paging);
         return page.getContent();
-//        return Moives;
     }
     public List<Moive> getAllMoives(){
 
@@ -31,20 +30,6 @@ public class MoiveService {
         return  moiveRepository.findById(Id);
     }
 
-    public List<Moive> addMoive(Moive t) {
-        List<Moive> Moives = new ArrayList<>();
-        moiveRepository.save(t);
-        moiveRepository.findAll().forEach(Moives::add);
-        return Moives;
-    }
-
-    public void updateMoive(String id, Moive newMoive) {
-        moiveRepository.save(newMoive);
-    }
-
-    public void deleteMoive() {
-        moiveRepository.deleteAll();
-    }
 
     public List<Moive> addMoives(List<Moive> moives) {
         return (List<Moive>) moiveRepository.saveAll(moives);

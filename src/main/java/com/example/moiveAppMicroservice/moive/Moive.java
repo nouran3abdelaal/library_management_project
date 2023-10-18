@@ -23,7 +23,7 @@ public class Moive {
     @Column(columnDefinition = "TEXT")
     private String overview;
     private String poster_path;
-    private Date releaseDate;
+        private Date releaseDate;
     private String vote_average;
     private String vote_count;
 
