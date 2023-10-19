@@ -1,4 +1,4 @@
-package com.example.moiveAppMicroservice.conf;
+package com.example.movieDetailsMicroservice.conf;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

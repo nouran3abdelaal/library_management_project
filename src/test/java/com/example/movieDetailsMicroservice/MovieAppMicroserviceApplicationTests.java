@@ -1,10 +1,10 @@
-package com.example.moiveAppMicroservice;
+package com.example.movieDetailsMicroservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MoiveAppMicroserviceApplicationTests {
+class MovieAppMicroserviceApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,4 +1,4 @@
-package com.example.moiveAppMicroservice.moive;
+package com.example.movieDetailsMicroservice.movie;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Moive {
+public class Movie {
     @Id
     private String id;
     private String original_language;

@@ -1,7 +1,7 @@
-package com.example.moiveAppMicroservice.controllers;
+package com.example.movieDetailsMicroservice.controllers;
 
-import com.example.moiveAppMicroservice.moive.Moive;
-import com.example.moiveAppMicroservice.services.MoiveService;
+import com.example.movieDetailsMicroservice.movie.Movie;
+import com.example.movieDetailsMicroservice.services.MoiveService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -19,38 +19,38 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class MoiveControllerTest {
+class MovieControllerTest {
     @InjectMocks
-    private MoiveController moiveController;
+    private MovieController movieController;
 
     @Mock
     private MoiveService moiveService;
 
     @Test
     public void testGetAllMoives() {
-        List<Moive> expectedMoives = new ArrayList<>();
-        expectedMoives.add(new Moive("1", "it","La vita è bella","overview1","poster1",
+        List<Movie> expectedMoives = new ArrayList<>();
+        expectedMoives.add(new Movie("1", "it","La vita è bella","overview1","poster1",
                 new Date(),"1","1"));
-        expectedMoives.add(new Moive("2", "it","title2","overview2","poster2",
+        expectedMoives.add(new Movie("2", "it","title2","overview2","poster2",
                 new Date(),"1","1"));
         when(moiveService.getAllMoives()).thenReturn(expectedMoives);
 
-        List<Moive> result = moiveController.getAllMoives();
+        List<Movie> result = movieController.getAllMoives();
 
         assertEquals(expectedMoives, result);
     }
 
     @Test
     public void testAddMoives() {
-        List<Moive> moivesToAdd = new ArrayList<>();
-        moivesToAdd.add(new Moive("1", "it","La vita è bella","overview1","poster1",
+        List<Movie> moivesToAdd = new ArrayList<>();
+        moivesToAdd.add(new Movie("1", "it","La vita è bella","overview1","poster1",
                 new Date(),"1","1"));
-        moivesToAdd.add(new Moive("2", "it","title2","overview2","poster2",
+        moivesToAdd.add(new Movie("2", "it","title2","overview2","poster2",
                 new Date(),"1","1"));
 
         when(moiveService.addMoives(any())).thenReturn(moivesToAdd);
 
-        List<Moive> result = moiveController.addMoives(moivesToAdd);
+        List<Movie> result = movieController.addMoives(moivesToAdd);
 
         assertEquals(moivesToAdd, result);
     }
@@ -58,12 +58,12 @@ class MoiveControllerTest {
     @Test
     public void testGetMoiveByID() {
         String moiveId = "1";
-        Optional<Moive> expectedMoive = Optional.of(new Moive("1", "it","La vita è bella","overview1","poster1",
+        Optional<Movie> expectedMoive = Optional.of(new Movie("1", "it","La vita è bella","overview1","poster1",
                 new Date(),"1","1"));
 
         when(moiveService.getMoiveByID(moiveId)).thenReturn(expectedMoive);
 
-        Optional<Moive> result = moiveController.getMoiveByID(moiveId);
+        Optional<Movie> result = movieController.getMoiveByID(moiveId);
 
         assertEquals(expectedMoive, result);
     }
@@ -71,12 +71,12 @@ class MoiveControllerTest {
     public void testGetAllMoivesPaginated() {
         int pageNumber = 1;
 
-        List<Moive> expectedMoives = new ArrayList<>();
+        List<Movie> expectedMoives = new ArrayList<>();
 
         Mockito.when(moiveService.getAllMoivesPaginated(Mockito.any(Pageable.class)))
                 .thenReturn(expectedMoives);
 
-        List<Moive> actualMoives = moiveController.getAllMoivesPaginated(pageNumber);
+        List<Movie> actualMoives = movieController.getAllMoivesPaginated(pageNumber);
 
         assertEquals(expectedMoives, actualMoives);
     }

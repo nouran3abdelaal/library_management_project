@@ -1,4 +1,4 @@
-package com.example.moiveAppMicroservice.conf;
+package com.example.movieDetailsMicroservice.conf;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

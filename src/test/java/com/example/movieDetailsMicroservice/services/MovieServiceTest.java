@@ -1,7 +1,7 @@
-package com.example.moiveAppMicroservice.services;
+package com.example.movieDetailsMicroservice.services;
 
-import com.example.moiveAppMicroservice.moive.Moive;
-import com.example.moiveAppMicroservice.repositories.MoiveRepository;
+import com.example.movieDetailsMicroservice.movie.Movie;
+import com.example.movieDetailsMicroservice.repositories.MovieRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -19,31 +19,31 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class MoiveServiceTest {
+class MovieServiceTest {
     @Mock
-    private MoiveRepository moiveRepository;
+    private MovieRepository movieRepository;
 @InjectMocks
     private MoiveService moiveService;
 
 
     @Test
     public void testGetAllMoives() {
-        List<Moive> expectedMoives = new ArrayList<>();
-        when(moiveRepository.findAll()).thenReturn(expectedMoives);
+        List<Movie> expectedMoives = new ArrayList<>();
+        when(movieRepository.findAll()).thenReturn(expectedMoives);
 
-        List<Moive> actualMoives = moiveService.getAllMoives();
+        List<Movie> actualMoives = moiveService.getAllMoives();
 
         assertEquals(expectedMoives, actualMoives);
     }
 
     @Test
     public void testGetAllMoivesPaginated() {
-        List<Moive> expectedMoives = new ArrayList<>();
+        List<Movie> expectedMoives = new ArrayList<>();
         Page page = Mockito.mock(Page.class);
-        when(moiveRepository.findAll(any(Pageable.class))).thenReturn(page);
+        when(movieRepository.findAll(any(Pageable.class))).thenReturn(page);
         when(page.getContent()).thenReturn(expectedMoives);
 
-        List<Moive> actualMoives = moiveService.getAllMoivesPaginated(Pageable.unpaged());
+        List<Movie> actualMoives = moiveService.getAllMoivesPaginated(Pageable.unpaged());
 
         assertEquals(expectedMoives, actualMoives);
     }
@@ -51,20 +51,20 @@ class MoiveServiceTest {
     @Test
     public void testGetMoiveByID() {
         String moiveId = "1";
-        Moive expectedMoive = new Moive();
-        when(moiveRepository.findById(moiveId)).thenReturn(Optional.of(expectedMoive));
+        Movie expectedMoive = new Movie();
+        when(movieRepository.findById(moiveId)).thenReturn(Optional.of(expectedMoive));
 
-        Optional<Moive> actualMoive = moiveService.getMoiveByID(moiveId);
+        Optional<Movie> actualMoive = moiveService.getMoiveByID(moiveId);
 
         assertEquals(expectedMoive, actualMoive.orElse(null));
     }
 
     @Test
     public void testAddMoives() {
-        List<Moive> moives = new ArrayList<>();
-        when(moiveRepository.saveAll(moives)).thenReturn(moives);
+        List<Movie> moives = new ArrayList<>();
+        when(movieRepository.saveAll(moives)).thenReturn(moives);
 
-        List<Moive> savedMoives = moiveService.addMoives(moives);
+        List<Movie> savedMoives = moiveService.addMoives(moives);
 
         assertEquals(moives, savedMoives);
     }

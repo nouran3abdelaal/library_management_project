@@ -1,4 +1,4 @@
-package com.example.moiveAppMicroservice.moive;
+package com.example.movieDetailsMicroservice.movie;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
-class MoiveTest {
+class MovieTest {
     @Test
     @DisplayName("Testing the constructor and the getter methods")
     public void testMoiveConstructorAndGetters() {
@@ -21,7 +21,7 @@ class MoiveTest {
         String voteAverage = "8.0";
         String voteCount = "1000";
 
-        Moive moive = new Moive(id, originalLanguage, originalTitle, overview, posterPath, releaseDate, voteAverage, voteCount);
+        Movie moive = new Movie(id, originalLanguage, originalTitle, overview, posterPath, releaseDate, voteAverage, voteCount);
 
         assertEquals(id, moive.getId());
         assertEquals(originalLanguage, moive.getOriginal_language());
@@ -44,7 +44,7 @@ class MoiveTest {
         String voteAverage = "8.0";
         String voteCount = "1000";
 
-        Moive moive = Moive.builder()
+        Movie moive = Movie.builder()
                 .id(id)
                 .original_language(originalLanguage)
                 .original_title(originalTitle)
@@ -68,7 +68,7 @@ class MoiveTest {
     @Test
     @DisplayName("Testing the setters")
     public void testMoiveSetters() {
-        Moive moive = new Moive();
+        Movie moive = new Movie();
 
         String id = "1";
         String originalLanguage = "English";

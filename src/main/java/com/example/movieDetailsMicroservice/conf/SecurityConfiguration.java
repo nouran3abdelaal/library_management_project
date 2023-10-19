@@ -1,4 +1,4 @@
-package com.example.moiveAppMicroservice.conf;
+package com.example.movieDetailsMicroservice.conf;
 
 
 import lombok.RequiredArgsConstructor;
