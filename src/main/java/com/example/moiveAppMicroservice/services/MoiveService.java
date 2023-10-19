@@ -16,8 +16,7 @@ public class MoiveService {
 
     public List<Moive> getAllMoivesPaginated(Pageable paging){
 
-        List<Moive> Moives = new ArrayList<>();
-        Page<Moive> page= (Page<Moive>) moiveRepository.findAll(paging);
+        Page<Moive> page= moiveRepository.findAll(paging);
         return page.getContent();
     }
     public List<Moive> getAllMoives(){
