@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MovieTest {
     @Test
     @DisplayName("Testing the constructor and the getter methods")
-    public void testMoiveConstructorAndGetters() {
+    public void testMovieConstructorAndGetters() {
         String id = "1";
         String originalLanguage = "English";
         String originalTitle = "Movie Title";
@@ -21,20 +21,20 @@ class MovieTest {
         String voteAverage = "8.0";
         String voteCount = "1000";
 
-        Movie moive = new Movie(id, originalLanguage, originalTitle, overview, posterPath, releaseDate, voteAverage, voteCount);
+        Movie movie = new Movie(id, originalLanguage, originalTitle, overview, posterPath, releaseDate, voteAverage, voteCount);
 
-        assertEquals(id, moive.getId());
-        assertEquals(originalLanguage, moive.getOriginal_language());
-        assertEquals(originalTitle, moive.getOriginal_title());
-        assertEquals(overview, moive.getOverview());
-        assertEquals(posterPath, moive.getPoster_path());
-        assertEquals(releaseDate, moive.getReleaseDate());
-        assertEquals(voteAverage, moive.getVote_average());
-        assertEquals(voteCount, moive.getVote_count());
+        assertEquals(id, movie.getId());
+        assertEquals(originalLanguage, movie.getOriginal_language());
+        assertEquals(originalTitle, movie.getOriginal_title());
+        assertEquals(overview, movie.getOverview());
+        assertEquals(posterPath, movie.getPoster_path());
+        assertEquals(releaseDate, movie.getReleaseDate());
+        assertEquals(voteAverage, movie.getVote_average());
+        assertEquals(voteCount, movie.getVote_count());
     }
     @Test
     @DisplayName("Testing the builder")
-    public void testMoiveBuilder() {
+    public void testMovieBuilder() {
         String id = "1";
         String originalLanguage = "English";
         String originalTitle = "Movie Title";
@@ -44,7 +44,7 @@ class MovieTest {
         String voteAverage = "8.0";
         String voteCount = "1000";
 
-        Movie moive = Movie.builder()
+        Movie movie = Movie.builder()
                 .id(id)
                 .original_language(originalLanguage)
                 .original_title(originalTitle)
@@ -55,20 +55,20 @@ class MovieTest {
                 .vote_count(voteCount)
                 .build();
 
-        assertEquals(id, moive.getId());
-        assertEquals(originalLanguage, moive.getOriginal_language());
-        assertEquals(originalTitle, moive.getOriginal_title());
-        assertEquals(overview, moive.getOverview());
-        assertEquals(posterPath, moive.getPoster_path());
-        assertEquals(releaseDate, moive.getReleaseDate());
-        assertEquals(voteAverage, moive.getVote_average());
-        assertEquals(voteCount, moive.getVote_count());
+        assertEquals(id, movie.getId());
+        assertEquals(originalLanguage, movie.getOriginal_language());
+        assertEquals(originalTitle, movie.getOriginal_title());
+        assertEquals(overview, movie.getOverview());
+        assertEquals(posterPath, movie.getPoster_path());
+        assertEquals(releaseDate, movie.getReleaseDate());
+        assertEquals(voteAverage, movie.getVote_average());
+        assertEquals(voteCount, movie.getVote_count());
     }
 
     @Test
     @DisplayName("Testing the setters")
-    public void testMoiveSetters() {
-        Movie moive = new Movie();
+    public void testMovieSetters() {
+        Movie movie = new Movie();
 
         String id = "1";
         String originalLanguage = "English";
@@ -79,23 +79,23 @@ class MovieTest {
         String voteAverage = "8.0";
         String voteCount = "1000";
 
-        moive.setId(id);
-        moive.setOriginal_language(originalLanguage);
-        moive.setOriginal_title(originalTitle);
-        moive.setOverview(overview);
-        moive.setPoster_path(posterPath);
-        moive.setReleaseDate(releaseDate);
-        moive.setVote_average(voteAverage);
-        moive.setVote_count(voteCount);
+        movie.setId(id);
+        movie.setOriginal_language(originalLanguage);
+        movie.setOriginal_title(originalTitle);
+        movie.setOverview(overview);
+        movie.setPoster_path(posterPath);
+        movie.setReleaseDate(releaseDate);
+        movie.setVote_average(voteAverage);
+        movie.setVote_count(voteCount);
 
-        assertEquals(id, moive.getId());
-        assertEquals(originalLanguage, moive.getOriginal_language());
-        assertEquals(originalTitle, moive.getOriginal_title());
-        assertEquals(overview, moive.getOverview());
-        assertEquals(posterPath, moive.getPoster_path());
-        assertEquals(releaseDate, moive.getReleaseDate());
-        assertEquals(voteAverage, moive.getVote_average());
-        assertEquals(voteCount, moive.getVote_count());
+        assertEquals(id, movie.getId());
+        assertEquals(originalLanguage, movie.getOriginal_language());
+        assertEquals(originalTitle, movie.getOriginal_title());
+        assertEquals(overview, movie.getOverview());
+        assertEquals(posterPath, movie.getPoster_path());
+        assertEquals(releaseDate, movie.getReleaseDate());
+        assertEquals(voteAverage, movie.getVote_average());
+        assertEquals(voteCount, movie.getVote_count());
     }
 
 

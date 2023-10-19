@@ -1,7 +1,7 @@
 package com.example.movieDetailsMicroservice.controllers;
 
 import com.example.movieDetailsMicroservice.movie.Movie;
-import com.example.movieDetailsMicroservice.services.MoiveService;
+import com.example.movieDetailsMicroservice.services.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,32 +13,32 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/moive")
+@RequestMapping("/api/Movie")
 public class MovieController {
-    private final MoiveService moiveService;
+    private final MovieService MovieService;
 
-    @RequestMapping("/Moives")
-    public List<Movie> getAllMoives() {
-         return  moiveService.getAllMoives();
+    @RequestMapping("/Movies")
+    public List<Movie> getAllMovies() {
+         return  MovieService.getAllMovies();
     }
 
-@RequestMapping("/Moives/{Page_number}")
-public List<Movie> getAllMoivesPaginated(@PathVariable int Page_number) {
+@RequestMapping("/Movies/{Page_number}")
+public List<Movie> getAllMoviesPaginated(@PathVariable int Page_number) {
     int itemsPerPage = 5;
     Pageable paging = PageRequest.of(Page_number-1, itemsPerPage, Sort.by("releaseDate").ascending());
-    return  moiveService.getAllMoivesPaginated(paging);
+    return  MovieService.getAllMoviesPaginated(paging);
 }
 
 
-    @RequestMapping(method = RequestMethod.POST, value = "/Moives")
-    public List<Movie> addMoives(@RequestBody List<Movie> moives) {
-        return moiveService.addMoives(moives);
+    @RequestMapping(method = RequestMethod.POST, value = "/Movies")
+    public List<Movie> addMovies(@RequestBody List<Movie> Movies) {
+        return MovieService.addMovies(Movies);
     }
 
-    @RequestMapping("/Moive/{Id}")
-    public Optional<Movie> getMoiveByID(@PathVariable String Id){
+    @RequestMapping("/Movie/{Id}")
+    public Optional<Movie> getMovieByID(@PathVariable String Id){
 
-        return moiveService.getMoiveByID(Id);
+        return MovieService.getMovieByID(Id);
     }
 
 

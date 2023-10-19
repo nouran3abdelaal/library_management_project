@@ -11,27 +11,27 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class MoiveService {
+public class MovieService {
     private final MovieRepository movieRepository;
 
-    public List<Movie> getAllMoivesPaginated(Pageable paging){
+    public List<Movie> getAllMoviesPaginated(Pageable paging){
 
         Page<Movie> page= movieRepository.findAll(paging);
         return page.getContent();
     }
-    public List<Movie> getAllMoives(){
+    public List<Movie> getAllMovies(){
 
-        List<Movie> Moives = new ArrayList<>();
-        movieRepository.findAll().forEach(Moives::add);
-        return Moives;
+        List<Movie> Movies = new ArrayList<>();
+        movieRepository.findAll().forEach(Movies::add);
+        return Movies;
     }
-    public Optional<Movie> getMoiveByID(String Id){
+    public Optional<Movie> getMovieByID(String Id){
         return  movieRepository.findById(Id);
     }
 
 
-    public List<Movie> addMoives(List<Movie> moives) {
-        return (List<Movie>) movieRepository.saveAll(moives);
+    public List<Movie> addMovies(List<Movie> Movies) {
+        return (List<Movie>) movieRepository.saveAll(Movies);
 
     }
 }

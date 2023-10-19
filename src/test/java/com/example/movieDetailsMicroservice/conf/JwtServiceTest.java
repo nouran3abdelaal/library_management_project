@@ -36,12 +36,14 @@ class JwtServiceTest {
 
 
     @Test
+    @DisplayName("Testing GetAuthorities method")
     void testGetAuthorities() {
         List<GrantedAuthority> authorities = jwtService.getAuthorities();
 
-        assertEquals(1, authorities.size());
-        assertEquals("ROLE_USER", authorities.get(0).getAuthority());
-
+        assertAll(
+                ()->        assertEquals(1, authorities.size()),
+                ()->        assertEquals("ROLE_USER", authorities.get(0).getAuthority())
+        );
 
     }
         @Test

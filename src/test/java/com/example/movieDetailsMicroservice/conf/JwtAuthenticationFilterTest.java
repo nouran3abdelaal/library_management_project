@@ -1,5 +1,6 @@
 package com.example.movieDetailsMicroservice.conf;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -22,9 +23,6 @@ class JwtAuthenticationFilterTest {
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Mock
-    private JwtService jwtService;
-
-    @Mock
     private HttpServletRequest request;
 
     @Mock
@@ -35,6 +33,7 @@ class JwtAuthenticationFilterTest {
 
 
     @Test
+    @DisplayName(" JwtAuthenticationFilter method with no token")
     public void testDoFilterInternal_NoAuthorizationHeader() throws Exception {
         when(request.getHeader("Authorization")).thenReturn(null);
         jwtAuthenticationFilter.doFilterInternal(request, response, filterChain);
@@ -43,17 +42,18 @@ class JwtAuthenticationFilterTest {
 
 
     @Test
+    @DisplayName(" JwtAuthenticationFilter method with invalid token")
     void testDoFilterInternal_UnauthorizedScenario() throws Exception {
         JwtService jwtService = Mockito.mock(JwtService.class);
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtService);
-        HttpServletRequest request = new MockHttpServletRequest();
+        MockHttpServletRequest request = new MockHttpServletRequest();
         HttpServletResponse response = new MockHttpServletResponse() {
 
         };
         FilterChain filterChain = Mockito.mock(FilterChain.class);
 
         String invalidToken = "Bearer invalidToken";
-        ((MockHttpServletRequest) request).addHeader(HttpHeaders.AUTHORIZATION, invalidToken);
+        request.addHeader(HttpHeaders.AUTHORIZATION, invalidToken);
 
         Mockito.when(jwtService.isTokenValid("invalidToken")).thenReturn(false);
 

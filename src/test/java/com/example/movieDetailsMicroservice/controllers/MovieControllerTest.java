@@ -1,7 +1,8 @@
 package com.example.movieDetailsMicroservice.controllers;
 
 import com.example.movieDetailsMicroservice.movie.Movie;
-import com.example.movieDetailsMicroservice.services.MoiveService;
+import com.example.movieDetailsMicroservice.services.MovieService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -24,60 +25,64 @@ class MovieControllerTest {
     private MovieController movieController;
 
     @Mock
-    private MoiveService moiveService;
+    private MovieService movieService;
 
     @Test
-    public void testGetAllMoives() {
-        List<Movie> expectedMoives = new ArrayList<>();
-        expectedMoives.add(new Movie("1", "it","La vita è bella","overview1","poster1",
+    @DisplayName("Testing getting all movies")
+    public void testGetAllMovies() {
+        List<Movie> expectedMovies = new ArrayList<>();
+        expectedMovies.add(new Movie("1", "it","La vita è bella","overview1","poster1",
                 new Date(),"1","1"));
-        expectedMoives.add(new Movie("2", "it","title2","overview2","poster2",
+        expectedMovies.add(new Movie("2", "it","title2","overview2","poster2",
                 new Date(),"1","1"));
-        when(moiveService.getAllMoives()).thenReturn(expectedMoives);
+        when(movieService.getAllMovies()).thenReturn(expectedMovies);
 
-        List<Movie> result = movieController.getAllMoives();
+        List<Movie> result = movieController.getAllMovies();
 
-        assertEquals(expectedMoives, result);
+        assertEquals(expectedMovies, result);
     }
 
     @Test
-    public void testAddMoives() {
-        List<Movie> moivesToAdd = new ArrayList<>();
-        moivesToAdd.add(new Movie("1", "it","La vita è bella","overview1","poster1",
+    @DisplayName("Testing adding movies")
+    public void testAddMovies() {
+        List<Movie> moviesToAdd = new ArrayList<>();
+        moviesToAdd.add(new Movie("1", "it","La vita è bella","overview1","poster1",
                 new Date(),"1","1"));
-        moivesToAdd.add(new Movie("2", "it","title2","overview2","poster2",
+        moviesToAdd.add(new Movie("2", "it","title2","overview2","poster2",
                 new Date(),"1","1"));
 
-        when(moiveService.addMoives(any())).thenReturn(moivesToAdd);
+        when(movieService.addMovies(any())).thenReturn(moviesToAdd);
 
-        List<Movie> result = movieController.addMoives(moivesToAdd);
+        List<Movie> result = movieController.addMovies(moviesToAdd);
 
-        assertEquals(moivesToAdd, result);
+        assertEquals(moviesToAdd, result);
     }
 
     @Test
-    public void testGetMoiveByID() {
-        String moiveId = "1";
-        Optional<Movie> expectedMoive = Optional.of(new Movie("1", "it","La vita è bella","overview1","poster1",
+    @DisplayName("Testing getting movie by ID")
+    public void testGetMovieByID() {
+        String MovieId = "1";
+        Optional<Movie> expectedMovie = Optional.of(new Movie("1", "it","La vita è bella","overview1","poster1",
                 new Date(),"1","1"));
 
-        when(moiveService.getMoiveByID(moiveId)).thenReturn(expectedMoive);
+        when(movieService.getMovieByID(MovieId)).thenReturn(expectedMovie);
 
-        Optional<Movie> result = movieController.getMoiveByID(moiveId);
+        Optional<Movie> result = movieController.getMovieByID(MovieId);
 
-        assertEquals(expectedMoive, result);
+        assertEquals(expectedMovie, result);
     }
     @Test
-    public void testGetAllMoivesPaginated() {
+    @DisplayName("Testing getting movies paginated")
+    public void testGetAllMoviesPaginated() {
         int pageNumber = 1;
 
-        List<Movie> expectedMoives = new ArrayList<>();
+        List<Movie> expectedMovies = new ArrayList<>();
 
-        Mockito.when(moiveService.getAllMoivesPaginated(Mockito.any(Pageable.class)))
-                .thenReturn(expectedMoives);
+        Mockito.when(movieService.getAllMoviesPaginated(Mockito.any(Pageable.class)))
+                .thenReturn(expectedMovies);
 
-        List<Movie> actualMoives = movieController.getAllMoivesPaginated(pageNumber);
+        List<Movie> actualMovies = movieController.getAllMoviesPaginated(pageNumber);
 
-        assertEquals(expectedMoives, actualMoives);
+        assertEquals(expectedMovies, actualMovies);
     }
 }
