@@ -13,7 +13,8 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/Movie")
+@CrossOrigin("http://localhost:4200")
+@RequestMapping("/api/movie")
 public class MovieController {
     private final MovieService MovieService;
 
