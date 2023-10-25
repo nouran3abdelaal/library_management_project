@@ -23,7 +23,7 @@ public class SecurityConfiguration {
         http.cors();
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/moive/**").authenticated()
+                .antMatchers("/api/movie/**").authenticated()
                 .and()
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
